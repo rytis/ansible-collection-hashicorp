@@ -1,0 +1,4 @@
+---
+- name: Install Nomad packages
+  package:
+    name: "{{ hashicorp_nomad_packages }}"
