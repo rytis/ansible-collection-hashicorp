@@ -1,0 +1,11 @@
+---
+- name: Install OS packages
+  ansible.builtin.package:
+    name: "{{ hashicorp_os_packages }}"
+
+- name: Add Hashicorp repository
+  ansible.builtin.command:
+    cmd: "dnf config-manager --add-repo {{ hashicorp_repo_file_url }}"
+    warn: no
+    creates: "/etc/yum.repos.d/{{ hashicorp_repo_file_url.split('/')[-1] }}"
+

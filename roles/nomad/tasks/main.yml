@@ -1,0 +1,9 @@
+- name: ping
+  ping:
+- name: is master
+  debug:
+    var: _nomad_master
+- name: is worker
+  debug:
+    var: _nomad_worker
+

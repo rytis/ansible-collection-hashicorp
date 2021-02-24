@@ -1,0 +1,2 @@
+_nomad_master: "{{ (nomad_role == 'master') or (nomad_role == 'both') }}"
+_nomad_worker: "{{ (nomad_role == 'worker') or (nomad_role == 'both') }}"

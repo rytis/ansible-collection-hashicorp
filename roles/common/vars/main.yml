@@ -1,0 +1,6 @@
+---
+hashicorp_os_packages:
+  - dnf-plugins-core
+
+hashicorp_repo_file_url: "https://rpm.releases.hashicorp.com/fedora/hashicorp.repo"
+
