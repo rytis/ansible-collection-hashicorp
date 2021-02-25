@@ -1,2 +1,5 @@
 - name: Install Nomad
-  ansible.builtin.import_tasks: install_nomad.yml
+  ansible.builtin.import_tasks: install.yml
+
+- name: Configure Nomad
+  ansible.builtin.import_tasks: configure.yml
