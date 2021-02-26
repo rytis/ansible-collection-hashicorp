@@ -1,4 +1,8 @@
 client {
   enabled = true
-  servers = ["127.0.0.1:4646"]
+  servers = [ 
+    {%- set j = joiner(', ') -%}
+    {%- for ip in hashicorp_nomad_master_ips -%} 
+      {{ j() }}"{{ ip }}:4647"
+    {%- endfor -%}]
 }

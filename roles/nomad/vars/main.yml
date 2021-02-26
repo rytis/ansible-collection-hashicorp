@@ -3,6 +3,7 @@ _nomad_worker: "{{ (nomad_role == 'worker') or (nomad_role == 'both') }}"
 
 hashicorp_nomad_data_dir: "/opt/nomad/data"
 hashicorp_nomad_config_dir: "/etc/nomad.d"
+hashicorp_nomad_datacenter: "dc1"
 
 hashicorp_nomad_packages:
   - nomad

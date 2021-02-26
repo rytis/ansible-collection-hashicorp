@@ -1,0 +1,4 @@
+- name: Enable Nomad service
+  ansible.builtin.service:
+    name: nomad
+    enabled: yes

@@ -3,3 +3,6 @@
 
 - name: Configure Nomad
   ansible.builtin.import_tasks: configure.yml
+
+- name: Configure services
+  ansible.builtin.import_tasks: service.yml
