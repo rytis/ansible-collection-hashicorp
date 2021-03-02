@@ -1,0 +1,5 @@
+---
+- name: Install Consul packages
+  ansible.builtin.package:
+    name: "{{ hashicorp_consul_packages }}"
+

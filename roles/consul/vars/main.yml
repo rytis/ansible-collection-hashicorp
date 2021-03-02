@@ -1,0 +1,2 @@
+hashicorp_consul_packages:
+  - consul
