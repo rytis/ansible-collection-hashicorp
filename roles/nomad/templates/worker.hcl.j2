@@ -5,4 +5,13 @@ client {
     {%- for ip in hashicorp_nomad_master_ips -%} 
       {{ j() }}"{{ ip }}:4647"
     {%- endfor -%}]
+  {% if hashicorp_nomad_host_volumes is defined %}
+  {%- for volume in hashicorp_nomad_host_volumes -%}
+  host_volume "{{ volume.name }}" {
+    path      = "{{ volume.path }}"
+    read_only = false
+  }
+  {%- endfor %}
+  {%- endif %}
+
 }

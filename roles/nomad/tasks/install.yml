@@ -1,4 +1,8 @@
 ---
 - name: Install Nomad packages
-  package:
+  ansible.builtin.package:
     name: "{{ hashicorp_nomad_packages }}"
+
+- name: Install additional Python libraries
+  ansible.builtin.pip:
+    name: "{{ hashicorp_nomad_pip_packages }}"

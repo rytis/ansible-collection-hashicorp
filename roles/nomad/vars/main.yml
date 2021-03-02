@@ -1,3 +1,4 @@
+
 _nomad_master: "{{ (nomad_role == 'master') or (nomad_role == 'both') }}"
 _nomad_worker: "{{ (nomad_role == 'worker') or (nomad_role == 'both') }}"
 
@@ -7,3 +8,7 @@ hashicorp_nomad_datacenter: "dc1"
 
 hashicorp_nomad_packages:
   - nomad
+
+hashicorp_nomad_pip_packages:
+  - python-nomad
+
