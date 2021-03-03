@@ -1,0 +1,13 @@
+# Full configuration options can be found at https://www.consul.io/docs/agent/options.html
+
+datacenter = "{{ hashicorp_consul_datacenter }}"
+data_dir = "{{ hashicorp_consul_data_dir }}"
+bind_addr = "{{ ansible_default_ipv4.address }}"
+client_addr = "{{ ansible_default_ipv4.address }}"
+ui = true
+retry_join = [
+    {%- set j = joiner(', ') -%}
+    {%- for ip in hashicorp_consul_master_ips -%}
+      {{ j() }}"{{ ip }}"
+    {%- endfor -%}]
+

@@ -1,0 +1,38 @@
+- name: Base configuration
+  ansible.builtin.template:
+    src: consul.hcl.j2
+    dest: "{{ hashicorp_consul_config_dir }}/consul.hcl"
+  notify:
+    - restart consul
+
+- name: Deploy master configuration
+  ansible.builtin.template:
+    src: master.hcl.j2
+    dest: "{{ hashicorp_consul_config_dir }}/master.hcl"
+  when: _consul_master
+  notify:
+    - restart consul
+
+- name: Remove master configuration
+  ansible.builtin.file:
+    path: "{{ hashicorp_consul_config_dir }}/master.hcl"
+    state: absent
+  when: not _consul_master
+  notify:
+    - restart consul
+
+#- name: Deploy worker configuration
+#  ansible.builtin.template:
+#    src: worker.hcl.j2
+#    dest: "{{ hashicorp_consul_config_dir }}/worker.hcl"
+#  when: _consul_worker
+#  notify:
+#    - restart consul
+#
+#- name: Remove worker configuration
+#  ansible.builtin.file:
+#    path: "{{ hashicorp_consul_config_dir }}/worker.hcl"
+#    state: absent
+#  when: not _consul_worker
+#  notify:
+#    - restart consul

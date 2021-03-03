@@ -1,2 +1,9 @@
+_consul_master: "{{ (consul_role == 'master') or (consul_role == 'both') }}"
+_consul_worker: "{{ (consul_role == 'worker') or (consul_role == 'both') }}"
+
+hashicorp_consul_data_dir: "/opt/consul"
+hashicorp_consul_config_dir: "/etc/consul.d"
+hashicorp_consul_datacenter: "dc1"
+
 hashicorp_consul_packages:
   - consul
