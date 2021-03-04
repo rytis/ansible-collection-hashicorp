@@ -1,0 +1,13 @@
+- name: Load nginx proxy configuration consul template
+  ansible.builtin.set_fact:
+    hashicorp_proxy_template_data: "{{ lookup('ansible.builtin.template', 'proxy.conf.tpl.j2') }}"
+
+- name: Create Nomad job
+  community.general.nomad_job:
+    host: "{{ hashicorp_nomad_master_ips[0] }}"
+    state: present
+    content: "{{ lookup('ansible.builtin.template', 'proxy.hcl.j2') }}"
+    timeout: 600
+    use_ssl: no
+  run_once: yes
+

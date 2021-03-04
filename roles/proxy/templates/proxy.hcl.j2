@@ -1,0 +1,51 @@
+job "proxy" {
+  datacenters = ["{{ hashicorp_nomad_datacenter }}"]
+
+  group "web" {
+
+    network {
+      port "http" {
+        static = 80
+        to = 80
+      }
+    }
+
+    task "nginx" {
+      driver = "docker"
+
+      config {
+        image = "nginx:stable-alpine"
+        ports = ["http"]
+        mounts = [
+          {
+            type = "bind"
+            target = "/etc/nginx/conf.d/proxy.conf"
+            source = "local/proxy.conf"
+          }
+        ]
+      }
+
+      service {
+        name = "${JOB}"
+        port = "http"
+        address_mode = "host"
+      }
+
+      template {
+        data = <<EOH
+        {{ hashicorp_proxy_template_data }}
+        EOH
+
+        destination = "local/proxy.conf"
+        left_delimiter = "<|"
+        right_delimiter = "|>"
+      }
+
+      resources {
+        cpu    = 500
+        memory = 1024
+      }
+    }
+  }
+}
+
