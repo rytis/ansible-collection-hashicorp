@@ -5,7 +5,7 @@
 
 server {
   listen 80;
-  server_name <| $mainDot.Name |>.{{ services_domain_name }};
+  server_name <| $mainDot.Name |> <| $mainDot.Name |>.{{ services_domain_name }} <| $mainDot.Name |>.service.consul;
       <| range $s := service $mainDot.Name |>
   set $upstream <| $s.Address |>:<| $s.Port |>;
       <| end |>
