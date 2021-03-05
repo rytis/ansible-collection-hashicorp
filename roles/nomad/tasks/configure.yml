@@ -36,3 +36,11 @@
   when: not _nomad_worker
   notify:
     - restart nomad
+
+- name: Create host local directories
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+  loop: "{{ hashicorp_nomad_host_volumes }}"
+  when: hashicorp_nomad_host_volumes is defined
+
