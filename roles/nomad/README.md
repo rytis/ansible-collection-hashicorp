@@ -1,0 +1,1 @@
+# Hashicorp Nomad installer
