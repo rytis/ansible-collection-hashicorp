@@ -1,0 +1,32 @@
+name: Ansible Galaxy
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish-to-galaxy:
+    environment: Galaxy
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+     - name: Setup python
+       uses: actions/setup-python@v2
+       with:
+         python-version: 3.9
+     - name: Install ansible
+       run: |
+           python -m pip install --upgrade pip
+           python -m pip install ansible
+     - name: Build galaxy collection
+       run: |
+           ansible-galaxy collection build
+     - name: Get package version
+       run: |
+           echo "PACKAGE_VERSION=$(awk '/version:/ {print $2}' galaxy.yml)" >> $GITHUB_ENV
+     - name: Publish collection to Galaxy
+       env:
+         GALAXY_TOKEN: ${{ secrets.GALAXY_TOKEN }}
+       run: |
+           ansible-galaxy collection publish rytis-hashicorp-${{ env.PACKAGE_VERSION }}.tar.gz --token=$GALAXY_TOKEN
