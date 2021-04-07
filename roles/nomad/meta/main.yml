@@ -1,3 +1,10 @@
----
-dependencies:
-  - role: rytis.hashicorp.common
+galaxy_info:
+  role_name: nomad
+  author: Rytis Sileika <rts.pub@pulegium.eu>
+  description: Install and setup Hashicorp Nomad service
+  license: GPLv3
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - hashicorp
+    - nomad
+  dependencies: []
