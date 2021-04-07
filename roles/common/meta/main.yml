@@ -1,0 +1,9 @@
+galaxy_info:
+  role_name: common
+  author: Rytis Sileika <rts.pub@pulegium.eu>
+  description: Role to prepare node for Hashicorp stack installation
+  license: GPLv3
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - hashicorp
+  dependencies: []
